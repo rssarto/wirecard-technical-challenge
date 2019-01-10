@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
+package com.wirecardtechincalchallenge.payment.enums;
 
 public enum PaymentStatus {
 	

@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.wirecardtechincalchallenge.payment.domain.Client;
+import com.wirecardtechincalchallenge.payment.domain.Payment;
+import com.wirecardtechincalchallenge.payment.enums.PaymentType;
+import com.wirecardtechincalchallenge.payment.repositories.ClientRepository;
+
 @Component
 public class PaymentValidator implements Validator {
 	
@@ -23,17 +28,9 @@ public class PaymentValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Payment payment = (Payment) obj;
 		if( !Objects.isNull(payment.getPaymentType()) ) {
-			switch( payment.getPaymentType() ) {
-				case BOLETO: {
-					if( Objects.isNull(payment.getBoleto()) ) {
-						errors.rejectValue("boleto", "null", null, "Boleto cannot be null");
-					}
-					break;
-				}
-				default: {
-					if( Objects.isNull(payment.getCard()) ) {
-						errors.rejectValue("card", "null", null, "Card cannot be null");
-					}
+			if( payment.getPaymentType() == PaymentType.CARD ) {
+				if( Objects.isNull(payment.getCard()) ) {
+					errors.rejectValue("card", "null", null, "Card cannot be null");
 				}
 			}
 		}

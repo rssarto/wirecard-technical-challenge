@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
+package com.wirecardtechincalchallenge.payment.domain;
 
 import java.math.BigDecimal;
 
@@ -14,6 +14,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import com.wirecardtechincalchallenge.payment.enums.PaymentStatus;
+import com.wirecardtechincalchallenge.payment.enums.PaymentType;
+
 @Entity
 @Table(name="PAYMENT")
 public class Payment {
@@ -26,7 +29,6 @@ public class Payment {
 	@JoinColumn(name="client_id")
 	private Client client;
 	
-	@Valid
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="boleto_id")
 	private Boleto boleto;
@@ -55,20 +57,16 @@ public class Payment {
 	}
 
 	public Payment(Client client, 
-				   Boleto boleto, 
 			   	   Card card,
 			   	   Buyer buyer,
 			   	   BigDecimal amount,
-			   	   PaymentType paymentType, 
-			   	   PaymentStatus status) {
+			   	   PaymentType paymentType) {
 		super();
 		this.client = client;
-		this.boleto = boleto;
 		this.card = card;
 		this.buyer = buyer;
 		this.amount = amount;
 		this.paymentType = paymentType;
-		this.status = status;
 	}
 
 	public Long getId() {

@@ -1,6 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
-
-import java.util.Objects;
+package com.wirecardtechincalchallenge.payment.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +16,7 @@ import org.hibernate.validator.constraints.Range;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.wirecardtechincalchallenge.payment.enums.CardIssuer;
 
 @Entity
 @Table(name="CARD")
@@ -92,10 +91,6 @@ public class Card {
 
 	public void setNumber(String number) {
 		this.number = number;
-		this.setCardIssuer(null);
-		if( Objects.nonNull(number) && number.trim() != "" ) {
-			this.setCardIssuer(CardIssuer.findIssuer(this.number));
-		}
 	}
 
 	public Integer getExpirationMonth() {

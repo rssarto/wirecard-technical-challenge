@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
+package com.wirecardtechincalchallenge.payment.domain;
 
 import java.util.Date;
 
@@ -25,6 +25,9 @@ public class Boleto {
 	@GeneratedValue
 	private long Id;
 	
+	@Column(nullable=false)
+	private String number;
+	
 	@ApiModelProperty(notes="Boleto's expiration date in the format YYYY-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "Brazil/East")
 	@Column(nullable=false)
@@ -35,11 +38,6 @@ public class Boleto {
 	private Payment payment;
 	
 	public Boleto() {
-	}
-	
-	public Boleto(Date expirationDate) {
-		super();
-		this.expirationDate = expirationDate;
 	}
 
 	public long getId() {
@@ -69,11 +67,18 @@ public class Boleto {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+	
+	public String getNumber() {
+		return number;
+	}
 
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
 	@Override
 	public String toString() {
-		return "Boleto [Id=" + Id + ", expirationDate=" + expirationDate + "]";
+		return "Boleto [Id=" + Id + ", number=" + number + ", expirationDate=" + expirationDate + "]";
 	}
 
 }

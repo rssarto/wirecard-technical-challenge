@@ -3,7 +3,7 @@ package com.wirecardtechincalchallenge.payment;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-import java.util.Optional;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wirecardtechincalchallenge.payment.domain.Payment;
+import com.wirecardtechincalchallenge.service.PaymentService;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -34,7 +37,7 @@ public class PaymentController {
 	private PaymentValidator paymentValidator;
 	
 	@Autowired
-	private PaymentRepository paymentRepository;
+	private PaymentService paymentService;
 	
     @InitBinder("payment")
     protected void initBinder(WebDataBinder binder) {
@@ -44,8 +47,7 @@ public class PaymentController {
 	@ApiOperation(value="Creates a Payment")
 	@PostMapping("/v1/payment")
 	public Resource<Payment> create(@ApiParam(value="Payment definition that is going to be created.") @RequestBody @Valid Payment payment) {
-		payment.setStatus(PaymentStatus.IN_ANALYSIS);
-		Payment newPayment = this.paymentRepository.save(payment);
+		Payment newPayment = this.paymentService.createPayment(payment);
 		
 		Resource<Payment> resource = new Resource<Payment>(newPayment);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass(), newPayment.getId()).getPayment(newPayment.getId()));
@@ -58,12 +60,12 @@ public class PaymentController {
 	@GetMapping("/v1/payment/{id}")
 	public Payment getPayment(@ApiParam(value="Payments's id to be retrieved.") @PathVariable Long id) {
 		
-		Optional<Payment> optionalPayment = this.paymentRepository.findById(id);
-		if( optionalPayment.isPresent() ) {
-			return optionalPayment.get();
+		Payment payment = this.paymentService.findById(id);
+		if( Objects.isNull(payment) ) {
+			throw new PaymentNotFoundException("No Payment found using id: " + id);
 		}
 		
-		throw new PaymentNotFoundException("No Payment found using id: " + id);
+		return payment;
 	}
 
 }

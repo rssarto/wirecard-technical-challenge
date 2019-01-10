@@ -5,9 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,19 +18,16 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.wirecardtechincalchallenge.WirecardTechincalChallengeApplication;
-import com.wirecardtechincalchallenge.payment.Boleto;
-import com.wirecardtechincalchallenge.payment.Buyer;
-import com.wirecardtechincalchallenge.payment.Card;
-import com.wirecardtechincalchallenge.payment.Client;
-import com.wirecardtechincalchallenge.payment.Payment;
-import com.wirecardtechincalchallenge.payment.PaymentStatus;
-import com.wirecardtechincalchallenge.payment.PaymentType;
+import com.wirecardtechincalchallenge.payment.domain.Buyer;
+import com.wirecardtechincalchallenge.payment.domain.Card;
+import com.wirecardtechincalchallenge.payment.domain.Client;
+import com.wirecardtechincalchallenge.payment.domain.Payment;
+import com.wirecardtechincalchallenge.payment.enums.PaymentType;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=WirecardTechincalChallengeApplication.class)
+@SpringBootTest
 @AutoConfigureMockMvc
-public class PaymentTests {
+public class PaymentControllerTests {
 	
 	private static final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
     
@@ -59,12 +54,6 @@ public class PaymentTests {
     	
     }
     
-    @Test
-    public void shouldNotAcceptPaymentWithNoBoleto() throws Exception {
-    		Payment payment = createPayment(PaymentType.BOLETO);
-    		payment.setBoleto(null);
-    		this.mockMvc.perform(post("/api/v1/payment").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(payment))).andExpect(status().isBadRequest());
-    }
     
     @Test
     public void shouldNotAcceptPaymentWithNoType() throws Exception {
@@ -267,12 +256,11 @@ public class PaymentTests {
     		Payment payment = null;
     		switch( paymentType ) {
 	    		case BOLETO: {
-	        		Boleto boleto = new Boleto(Date.from(LocalDate.now().plusDays(20).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-	        		payment = new Payment(createClient(), boleto, null, createBuyer(), BigDecimal.valueOf(1000.58), PaymentType.BOLETO, PaymentStatus.IN_ANALYSIS);
+	        		payment = new Payment(createClient(), null, createBuyer(), BigDecimal.valueOf(1000.58), PaymentType.BOLETO);
 	    			break;
 	    		}
 	    		default: {
-	    			payment = new Payment(createClient(), null, createCard(), createBuyer(), BigDecimal.valueOf(1000.58), PaymentType.CARD, PaymentStatus.IN_ANALYSIS);
+	    			payment = new Payment(createClient(), createCard(), createBuyer(), BigDecimal.valueOf(1000.58), PaymentType.CARD);
 	    		}
     		}
     		return payment;
