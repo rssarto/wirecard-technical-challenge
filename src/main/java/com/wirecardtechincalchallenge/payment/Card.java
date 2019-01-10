@@ -1,5 +1,7 @@
 package com.wirecardtechincalchallenge.payment;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -90,7 +92,10 @@ public class Card {
 
 	public void setNumber(String number) {
 		this.number = number;
-		this.setCardIssuer(CardIssuer.findIssuer(this.number));
+		this.setCardIssuer(null);
+		if( Objects.nonNull(number) && number.trim() != "" ) {
+			this.setCardIssuer(CardIssuer.findIssuer(this.number));
+		}
 	}
 
 	public Integer getExpirationMonth() {
