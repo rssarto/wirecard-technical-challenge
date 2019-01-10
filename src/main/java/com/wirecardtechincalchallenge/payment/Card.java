@@ -50,6 +50,8 @@ public class Card {
 	@Column(nullable=false)
 	private Integer cvv;
 	
+	private CardIssuer cardIssuer;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy="card", fetch=FetchType.LAZY)
 	private Payment payment;
@@ -88,6 +90,7 @@ public class Card {
 
 	public void setNumber(String number) {
 		this.number = number;
+		this.setCardIssuer(CardIssuer.findIssuer(this.number));
 	}
 
 	public Integer getExpirationMonth() {
@@ -120,6 +123,14 @@ public class Card {
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	
+	public CardIssuer getCardIssuer() {
+		return cardIssuer;
+	}
+
+	public void setCardIssuer(CardIssuer cardIssuer) {
+		this.cardIssuer = cardIssuer;
 	}
 
 	@Override
