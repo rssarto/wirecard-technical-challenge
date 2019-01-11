@@ -15,11 +15,12 @@
 
 <p>In the persistence layer we used JPA and Hibernate provider as an ORM framework avoiding us to create all the SQLs related to the database. Moreover we used the Spring Boot Data JPA Starter project to take advantage of its Repository API avoiding us to create Data Access Objects - DAO.</p>  
 
-<p>As DBMS is used H2 in memory database. Once the application is up and running is possible to access the database console using the URL below: </p>
+<p>As DBMS we used H2 in memory database. Once the application is up and running is possible to access the database console using the URL below: </p>
 
 <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a>
 
 # Postman Documentation
+<p>The Postman Documentation is available at:</p>
 <a href="https://documenter.getpostman.com/view/983670/RznFqeQ7">https://documenter.getpostman.com/view/983670/RznFqeQ7</a>
 
 # Swagger API documentation
