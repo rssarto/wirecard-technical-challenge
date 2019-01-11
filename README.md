@@ -1,14 +1,12 @@
 # wirecard-technical-challenge
 
 # How to Run the project
-
-After cloning the project repository please access the project directory and run commands below:
+<p>After cloning the project repository please access the project directory and run commands below:</p>
 
 	-> mvn clean package
 	-> java -jar ./target/wirecard-techincal-challenge-0.0.1-SNAPSHOT.jar  	
 
 # Architecture and Design applied
-
 <p>We used SpringBoot to provide the backend api as a REST service taking advantage of its starter projects in order to decrease the effort to build an application.</p>
 
 <p>In the REST api we're using application/json to communicate with the external world and we also applied HATEOAS to control / authorize the interaction with the resources the API provides.</p>
@@ -21,8 +19,10 @@ After cloning the project repository please access the project directory and run
 
 	-> http://localhost:8080/h2-console
 
-# Swagger API documentation
+# Postman Documentation
+	https://documenter.getpostman.com/view/983670/RznFqeQ7
 
-Once the application is up and running you can access the Swagger API documentation using the URL below:
+# Swagger API documentation
+<p>Once the application is up and running you can access the Swagger API documentation using the URL below:</p>
 
 	http://localhost:8080/swagger-ui.html
