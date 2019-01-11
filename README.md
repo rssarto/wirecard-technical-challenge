@@ -17,12 +17,12 @@
 
 <p>As DBMS is used H2 in memory database. Once the application is up and running is possible to access the database console using the URL below: </p>
 
-	-> http://localhost:8080/h2-console
+	<a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a>
 
 # Postman Documentation
-	https://documenter.getpostman.com/view/983670/RznFqeQ7
+	<a href="https://documenter.getpostman.com/view/983670/RznFqeQ7">https://documenter.getpostman.com/view/983670/RznFqeQ7</a>
 
 # Swagger API documentation
 <p>Once the application is up and running you can access the Swagger API documentation using the URL below:</p>
 
-	http://localhost:8080/swagger-ui.html
+	<a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a>
