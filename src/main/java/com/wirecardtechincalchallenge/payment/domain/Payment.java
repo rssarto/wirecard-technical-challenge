@@ -1,5 +1,7 @@
 package com.wirecardtechincalchallenge.payment.domain;
 
+import static com.wirecardtechincalchallenge.payment.util.JsonUtil.*;
+
 import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
@@ -133,4 +135,9 @@ public class Payment {
 		this.status = paymentStatus;
 	}
 
+	@Override
+	public String toString() {
+		return toJson(this);
+	}
+	
 }

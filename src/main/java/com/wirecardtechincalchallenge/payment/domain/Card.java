@@ -136,6 +136,7 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", holderName=" + holderName + ", number=" + number + ", expirationMonth="
-				+ expirationMonth + ", expirationYear=" + expirationYear + ", cvv=" + cvv + "]";
+				+ expirationMonth + ", expirationYear=" + expirationYear + ", cvv=" + cvv + ", cardIssuer=" + cardIssuer
+				+ "]";
 	}
 }
