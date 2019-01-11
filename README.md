@@ -1,7 +1,7 @@
 # wirecard-technical-challenge
 
 # How to Run the project
-<p>After cloning the project repository please access the project directory and run commands below:</p>
+<p>After cloning the project repository please access the project directory and run the commands below:</p>
 
 	-> mvn clean package
 	-> java -jar ./target/wirecard-techincal-challenge-0.0.1-SNAPSHOT.jar  	
