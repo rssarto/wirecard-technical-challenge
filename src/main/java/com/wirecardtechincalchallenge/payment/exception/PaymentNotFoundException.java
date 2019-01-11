@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
+package com.wirecardtechincalchallenge.payment.exception;
 
 import com.wirecardtechincalchallenge.exception.NotFoundException;
 

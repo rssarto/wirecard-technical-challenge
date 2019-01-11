@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.payment;
+package com.wirecardtechincalchallenge.payment.validator;
 
 import java.util.Objects;
 import java.util.Optional;

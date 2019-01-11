@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.service;
+package com.wirecardtechincalchallenge.payment.service;
 
 import java.time.LocalDate;
 import java.sql.Date;

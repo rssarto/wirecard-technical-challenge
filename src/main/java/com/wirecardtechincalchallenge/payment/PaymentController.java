@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wirecardtechincalchallenge.payment.domain.Payment;
-import com.wirecardtechincalchallenge.service.PaymentService;
+import com.wirecardtechincalchallenge.payment.exception.PaymentNotFoundException;
+import com.wirecardtechincalchallenge.payment.service.PaymentService;
+import com.wirecardtechincalchallenge.payment.validator.PaymentValidator;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

@@ -1,4 +1,4 @@
-package com.wirecardtechincalchallenge.service;
+package com.wirecardtechincalchallenge.payment.service;
 
 import com.wirecardtechincalchallenge.payment.domain.Payment;
 
