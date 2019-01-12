@@ -46,9 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public Payment findById(Long id) {
-		logger.info("Find payment by id: " + id);
 		Optional<Payment> optionalPayment = paymentRepository.findById(id);
-		logger.info(optionalPayment.toString());
 		return optionalPayment.orElse(null);
 	}
 	
