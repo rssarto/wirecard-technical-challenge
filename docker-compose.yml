@@ -3,6 +3,6 @@ version: "2.0"
 services:
   wirecard-technical-challenge:
     container_name: wirecard-technical-challenge
-    image: rssarto/wirecard-technical-challenge:2.0.0
+    image: rssarto/wirecard-technical-challenge:3.0.0
     ports: 
       - "8080:8080"
