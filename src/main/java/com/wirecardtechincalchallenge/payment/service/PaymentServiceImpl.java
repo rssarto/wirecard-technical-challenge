@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.wirecardtechincalchallenge.payment.domain.Payment;
 import com.wirecardtechincalchallenge.payment.enums.PaymentStatus;
+import com.wirecardtechincalchallenge.payment.exception.CardIssuerException;
+import com.wirecardtechincalchallenge.payment.exception.CardProcessingException;
 import com.wirecardtechincalchallenge.payment.repositories.PaymentRepository;
 
 @Service
@@ -36,6 +38,14 @@ public class PaymentServiceImpl implements PaymentService {
 				break;
 			default:
 				cardService.defineCardIssuer(payment);
+				CardProcessingService cardProcessingService = payment.getCard().getCardIssuer().cardProcessing();
+				if( cardProcessingService != null ) {
+					if( !cardProcessingService.process(payment) ) {
+						throw new CardProcessingException("The card issuer rejected the card.");
+					}
+				}else {
+					throw new CardIssuerException("The card issuer wasn't identified.");
+				}
 				break;
 		}
 		this.paymentRepository.save(payment);
