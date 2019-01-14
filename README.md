@@ -1,10 +1,17 @@
 # wirecard-technical-challenge
 
-# How to Run the project
-<p>After cloning the project repository please access the project directory and run the commands below:</p>
-
+# Building the project
+<p>After cloning the project repository please access the project directory and run the command below:</p>
 	-> mvn clean package
+
+# How to Run the project
+<p>After building the project run the command below:</p>
+
 	-> java -jar ./target/wirecard-techincal-challenge-0.0.1-SNAPSHOT.jar  	
+
+# How to Run the project using Docker
+<p>After building the project run the command below:</p>
+	-> docker-compose up
 
 # Architecture and Design applied
 <p>We used SpringBoot to provide the backend api as a REST service taking advantage of its starter projects in order to decrease the effort to build an application.</p>
